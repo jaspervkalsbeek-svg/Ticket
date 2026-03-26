@@ -1,0 +1,58 @@
+.ticket-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #d32f2f; /* of een feestelijke kleur die bij de site past */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.bestellen p {
+    font-size: 1.3rem;
+    margin: 20px 0;
+}
+
+.btn-primary button {
+    background-color: #d32f2f;
+    color: white;
+    font-size: 1.4rem;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary button:hover {
+    background-color: #b71c1c;
+    transform: scale(1.05);
+}
+
+.btn-secondary button {
+    background-color: #555;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+}
+
+.klein {
+    font-size: 0.95rem;
+    color: #666;
+    margin-top: 8px;
+}
+
+.PrimaryContainer,
+.SecondaryContainer{
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 5px;
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 40px auto;
+}
+

@@ -6,34 +6,37 @@
     <title>Tickets bestellen</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="Order">
-        <h1>Bestellen kaartjes Spik en Span</h1>
+<body style="background-image: url('../img/spik en span.jpg'); background-repeat: no-repeat; background-size: cover;">
+    <div class="Ordering">
+        <h1 style="text-align: center; color: yellow;">Bestellen kaartjes <br><img src="../img/Spik en Span.png" alt="Spik en Span" style="border-radius: 8px; height: 100px;"></h1>
         <form action="ConfirmOrder.php" method="POST" class="Order">
 
-            <input type="Fname" name="Fname" placeholder="Voornaam" required>
-            <input type="Sname" name="Sname" placeholder="Achternaam" requierd>
-            <input type="Email" name="Email" placeholder="Email" required>
-            <select name="Aanhef" required>
+            <input type="checkbox" id="15 augustus" name="Date" value="15"><strong style="color: yellow;">15 augustus</strong>
+            <input type="checkbox" id="16 augustus" name="Date" value="16"><strong style="color: yellow;">16 augustus</strong> <br>
+            <select class="input" name="Aanhef" required>
                 <option value="">Aanhef</option>
                 <option value="Man">Man</option>
                 <option value="Vrouw">Vrouw</option>
                 <option value="None">Wil ik liever niet zeggen</option>
             </select>
-            <label for="geboortedatum">Geboortedatum</label>
-            <input type="date" id="geboortedatum" name="geboortedatum"required>
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-            </div>
+            <input class="input" name="Fname" placeholder="Voornaam" required> <br>
+            <input class="input" type="Sname" name="Sname" placeholder="Achternaam" requierd> <br>
+            <input class="input" type="Email" name="Email" placeholder="Email" required><br>
 
-            <button type="submit" name="register"> bestellen!</button>
+            <label for="geboortedatum" class="input" style="color: yellow;">Geboortedatum</label>
+            <input type="date" id="geboortedatum" name="geboortedatum" required>
+            <br><br>
 
+            <button type="submit" name="register" class="btn-ordering"> bestellen!</button> <br>
+
+            
+            
+            door te bestellen ga ik ga akkoord met de <a href="Voorwaarde.html" style="color: yellow;">algemene voorwaarden</a> en de <a href="privacyverklaring.html" style="color: yellow;">privacyverklaring</a>
+        <br><br>
         </form>
+        <a href="homepage.html"><button class="input">Annuleren</button></a>
     </div>
+    <br>
+    <div class="btn-primary"> <a href="Login.html"><button>Al een kaart gekocht?</button></a> </div>
 </body>
 </html>

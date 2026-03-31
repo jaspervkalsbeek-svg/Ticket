@@ -37,4 +37,6 @@
 </div>
 
 </body>
+
+<ui:include src="../includes/footer.html"
 </html>

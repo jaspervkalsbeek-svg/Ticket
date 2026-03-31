@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+    background: linear-gradient(135deg, rgb(248, 219, 87), rgb(255, 235, 130));
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title */
+#titel {
+    font-size: 50px;
+    text-align: center;
+    color: rgb(82, 82, 148);
+    text-shadow: 2px 2px white;
+    margin-bottom: 20px;
+}
+
+/* Subtitles */
+h2 {
+    color: rgb(82, 82, 148);
+    text-align: center;
+}
+
+/* Main form container */
+.formBox {
+    background-color: white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 4px solid rgb(82, 82, 148);
+    position: relative;
+}
+
+
+/* Input styling */
+input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(82, 82, 148);
+    outline: none;
+    font-size: 16px;
+}
+
+
+/* General box styling */
+.box {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 50px;
+    border-radius: 5px;
+}
+
+/* Optional button style */
+button {
+    background-color: rgb(82, 82, 148);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: rgb(60, 60, 120);
+    transform: scale(1.05);
+}

@@ -17,7 +17,7 @@ include "../includes/db.php"
 <div class="PrimaryContainer">
     <div class="bestellen">
         <p>Kaarten voor <strong>Spik en Span</strong> op <strong> 15 of 16 augustus</strong> op kasteel Limbricht.</p>
-        <a href="#" class="btn-primary"><button>Snel tickets bestellen</button></a>
+        <a href="Orders.html" class="btn-primary"><button>Snel tickets bestellen</button></a>
     </div>
 </div>
 <br>

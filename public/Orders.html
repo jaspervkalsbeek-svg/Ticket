@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets bestellen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="Order">
+        <h1>Bestellen kaartjes Spik en Span</h1>
+        <form action="ConfirmOrder.php" method="POST" class="Order">
+
+            <input type="Fname" name="Fname" placeholder="Voornaam" required>
+            <input type="Sname" name="Sname" placeholder="Achternaam" requierd>
+            <input type="Email" name="Email" placeholder="Email" required>
+            <select name="Aanhef" required>
+                <option value="">Aanhef</option>
+                <option value="Man">Man</option>
+                <option value="Vrouw">Vrouw</option>
+                <option value="None">Wil ik liever niet zeggen</option>
+            </select>
+            <label for="geboortedatum">Geboortedatum</label>
+            <input type="date" id="geboortedatum" name="geboortedatum"required>
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+            </div>
+
+            <button type="submit" name="register"> bestellen!</button>
+
+        </form>
+    </div>
+</body>
+</html>

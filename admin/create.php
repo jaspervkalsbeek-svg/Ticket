@@ -1,7 +1,7 @@
     <?php
     include ‘db.php’; // Include the database connection
 
-    if (isset($_POST[‘submit’])) {
+    if (isset($_POST['submit'])) {
     $email = $_POST[‘email’];
     $leeftijd = $_POST[‘leeftijd’];
     $fname = $_POST[‘fname’];

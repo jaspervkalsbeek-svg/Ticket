@@ -35,45 +35,19 @@ function isActiveForm($formName, $activeForm) {
 </head>
 
 <body>
-    <div class="container">
         <div class="form-box <?= isActiveForm('login', $activeForm); ?>" id="login-form">
             <form action="login_register.php" method="post">
                 <h2>Inloggen</h2>
                 <?=showError($errors['login']);?>
-                <input type="email" name="email" placeholder="email" required>
+                <input type="text" name="email" placeholder="email" required>
 
-                <input type="password" name="password" placeholder="password" required>
+                <input type="text" name="QR-code" placeholder="QR-code" required>
 
                 <button type="submit" name="login">login</button>
 
-                <p>heb je geen account? <a href="#" id="show-register-form">Registreer</a></p>
+                <p>nog geen kaartjes gekocht? <a href="../public/Orders.html" id="show-register-form">koop ze hier!</a></p>
             </form>
         </div>
-
-
-        <div class="form-box <?= isActiveForm('register', $activeForm); ?>" id="register-form">
-            <form action="login_register.php" method="post">
-                <h2>Registreer</h2>
-                <?=showError($errors['register']);?>
-
-                <input type="text" name="name" placeholder="name" required>
-
-                <input type="email" name="email" placeholder="email" required>
-                
-                <input type="password" name="password" placeholder="password" required>
-                <select name="role" required>
-                    <option value="">Select role</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-                <button type="submit" name="register">Registreer</button>
-                
-
-                <p>heb je al een account? <a href="#" id="show-login-form">inloggen</a></p>
-            </form>
-        </div>
-
-    </div>
 
 
     <script src="login.js"></script>

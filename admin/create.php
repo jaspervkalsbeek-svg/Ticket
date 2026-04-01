@@ -1,16 +1,16 @@
     <?php
-    include ‘db.php’; // Include the database connection
+    include 'db.php'; // Include the database connection
 
-    if (isset($_POST[‘submit’])) {
-    $email = $_POST[‘email’];
-    $leeftijd = $_POST[‘leeftijd’];
-    $fname = $_POST[‘fname’];
-    $lname = $_POST[‘lname’];
-    $herkomst = $_POST[‘herkomst’];
-    $ticketid = $_POST[‘ticketid’];
+    if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $leeftijd = $_POST['leeftijd'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $herkomst = $_POST['herkomst'];
+    $ticketid = $_POST['ticketid'];
 
 
-    $sql = “INSERT INTO users (email, leeftijd, fname, lname, herkomst, ticket_id) VALUES (‘$email’, ‘$leeftijd’, ‘$fname’, ‘$lname’, ‘$herkomst’, ‘$ticketid’)”;
+    $sql = “INSERT INTO users (email, leeftijd, fname, lname, herkomst, ticket_id) VALUES ('$email', '$leeftijd', '$fname', '$lname', '$herkomst', '$ticketid')”;
 
     if ($conn->query($sql) === TRUE) {
     echo “New record created successfully”;

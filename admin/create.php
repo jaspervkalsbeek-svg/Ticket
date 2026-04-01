@@ -2,9 +2,13 @@
     include ‘db.php’; // Include the database connection
 
     if (isset($_POST[‘submit’])) {
-    $name = $_POST[‘name’];
     $email = $_POST[‘email’];
-    $phone = $_POST[‘phone’];
+    $leeftijd = $_POST[‘leeftijd’];
+    $fname = $_POST[‘fname’];
+    $lname = $_POST[‘lname’];
+    $herkomst = $_POST[‘herkomst’];
+    $ticketid = $_POST[‘ticketid’];
+
 
     $sql = “INSERT INTO users (email, leeftijd, fname, lname, herkomst, ticket_id) VALUES (‘$email’, ‘$leeftijd’, ‘$fname’, ‘$lname’, ‘$herkomst’, ‘$ticketid’)”;
 

@@ -15,7 +15,7 @@
         </div>
 
         <div class="header-buttons">
-            <h1><a href="#" class="btn-primary"><button>inloggen</button></a>
+            <h1><a href="../inlog_page/login.php" class="btn-primary"><button>inloggen</button></a>
             <a href="Orders.html" class="btn-primary"> <button> tickets kopen</button></a>
             <a href="#" class="btn-primary"> <button>medewerkers</button></a></h1>
         </div>

@@ -12,8 +12,7 @@
     echo “New record created successfully”;
     } else {
     echo “Error: “ . $sql . “<br>” . $conn->error;
-    }
-    }
+    }}
     ?>
 
     <form action=”create.php” method=”post”>

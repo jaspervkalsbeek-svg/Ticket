@@ -1,53 +1,52 @@
 <?php
-require_once '../includes/db.php';
+
 header('Content-Type: application/json');
-
-$data = json_decode(file_get_contents("php://input"), true);
-$qr_code = trim($data['qr_code'] ?? '');
-
-if (empty($qr_code)) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'QR Code is empty'
-    ]);
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
+ 
+require_once '../includes/db.php'; 
+ 
+function respond(bool $success, string $message, int $httpCode = 200): void {
+    http_response_code($httpCode);
+    echo json_encode(['success' => $success, 'message' => $message]);
     exit;
 }
+ 
 
-try {
-    $stmt = $conn->prepare("SELECT id, scanned FROM tickets_tb WHERE ticket_id = ? LIMIT 1");
-    $stmt->execute([$qr_code]);
-    $ticket = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$ticket) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Ticket not found'
-        ]);
-        exit;
-    }
-
-    if ($ticket['scanned'] == 1) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Ticket already scanned'
-        ]);
-        exit;
-    }
-
-    // Mark ticket as scanned
-    $update = $conn->prepare("UPDATE tickets_tb SET scanned = 1, dateofattendance = NOW() WHERE id = ?");
-    $update->execute([$ticket['id']]);
-
-    echo json_encode([
-        'success' => true,
-        'message' => 'Ticket successfully scanned ✅'
-    ]);
-
-} catch (PDOException $e) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Database error'
-    ]);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    respond(false, 'Method not allowed.', 405);
 }
-$conn = null;
-?>
+
+$body = json_decode(file_get_contents('php://input'), true);
+ 
+if (!isset($body['ticket_id']) || !isset($body['ticket_id'])) {
+    respond(false, 'Missing QR-code.', 400);
+}
+ 
+$qrCode = trim($body['ticket_id']);
+ 
+try {
+    $stmt = $conn->prepare('SELECT id, scanned FROM tickets_tb WHERE ticket_id = ? LIMIT 1');
+    $stmt->execute([$qrCode]);
+    $ticket = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    respond(false, 'Database query failed.', 500);
+}
+ 
+if (!$ticket) {
+    respond(false, 'Ticket not found.');
+}
+ 
+if ((bool)$ticket['scanned'] === true) {
+    respond(false, 'Ticket has already been scanned.');
+}
+ 
+try {
+    $update = $conn->prepare('UPDATE tickets_tb SET scanned = 1 WHERE id = ?');
+    $update->execute([$ticket['id']]);
+} catch (PDOException $e) {
+    respond(false, 'Failed to update ticket.', 500);
+}
+ 
+respond(true, 'Ticket scanned successfully.');

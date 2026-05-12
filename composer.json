@@ -1,0 +1,13 @@
+{
+    "name": "jasper/ticket",
+    "authors": [
+        {
+            "name": "jasper van kalsbeek",
+            "email": "jasper.v.kalsbeek@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0",
+        "setasign/fpdf": "^1.8"
+    }
+}

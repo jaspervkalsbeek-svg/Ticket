@@ -16,7 +16,6 @@ $fname        = trim($_POST['Fname']);
 $sname        = trim($_POST['Sname']);
 $email        = trim($_POST['Email']);
 $aanhef       = trim($_POST['Aanhef']);
-$geboortedatum = trim($_POST['geboortedatum']);
 $aantal       = (int)$_POST['aantal'];
 $tickets      = $_POST['tickets'] ?? [];
 

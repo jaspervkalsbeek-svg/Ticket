@@ -7,5 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+<<<<<<< HEAD
+=======
     'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
+>>>>>>> 186c37cbb2fb7fbe8ce8dfb490145890cd9914fa
 );

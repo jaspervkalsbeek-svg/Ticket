@@ -9,11 +9,11 @@
 <body style="background-image: url('../img/spik en span.jpg'); background-repeat: no-repeat; background-size: cover;">
     <div class="Ordering">
         <h1 style="text-align: center; color: yellow;">Bestellen kaartjes <br><img src="../img/Spik en Span.png" alt="Spik en Span" style="border-radius: 8px; height: 100px;"></h1>
-        <form action="ConfirmOrder.php" method="POST" class="Order">
+        <form action="confirmorder.php" method="POST" class="Order">
 
-            <input type="checkbox" id="15 augustus" name="Date" value="15"><strong style="color: yellow;">15 augustus</strong>
-            <input type="checkbox" id="16 augustus" name="Date" value="16"><strong style="color: yellow;">16 augustus</strong> <br>
-            <select class="input" name="Aanhef" required>
+            <input type="checkbox" name="event[]" value="15_augustus"><strong style="color: yellow;">15 augustus</strong> <br>
+            <input type="checkbox" name="event[]" value="16_augustus"><strong style="color: yellow;">16 augustus</strong> <br>
+            <select class="input" name="aanhef" required>
                 <option value="">Aanhef</option>
                 <option value="Man">Man</option>
                 <option value="Vrouw">Vrouw</option>
@@ -27,7 +27,7 @@
             <input type="date" id="geboortedatum" name="geboortedatum" required> <br>
 
             aantal kaartjes (max 8 per bestelling):
-            <select type="input" name="aantal" placeholder="Aantal kaartjes" required>
+            <select type="input" name="amount" placeholder="Aantal kaartjes" required>
 
                 <option value="1">1</option>
                 <option value="2">2</option>

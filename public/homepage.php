@@ -10,13 +10,13 @@
 <header class="sticky-footer">
     <div>
         <div class="logo">
-            <h1> <img src="../img/Spik en Span.png" alt="Spik en Span" height="50 px">Welkom bij Spik en Span, verzorgt door kasteel lambrecht 
-            <img src="../img/kasteel limbricht.svg" alt="Kasteel Lambrecht" height="50 px"></h1>
+            <h1> <img src="../img/Spik en Span.png" alt="Spik en Span" height="50 px">Welkom bij Spik en Span, verzorgt door kasteel limbricht 
+            <img src="../img/kasteel limbricht.svg" alt="Kasteel Limbricht" height="50 px"></h1>
         </div>
 
         <div class="header-buttons">
             <h1><a href="../inlog_page/login.php" class="btn-primary"><button>inloggen</button></a>
-            <a href="Orders.html" class="btn-primary"> <button> tickets kopen</button></a>
+            <a href="festivals.php" class="btn-primary"> <button> tickets kopen</button></a>
             <a href="#" class="btn-primary"> <button>medewerkers</button></a></h1>
         </div>
     </div>

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 void main() {
   runApp(const MyApp());
 }
@@ -29,20 +28,20 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-  static const String serverUrl = 'http://10.88.228.165/ticket/ticket/ScanTicket.php';
+  static const String serverUrl = 'http://10.188.240.165/ticket/ticket/ScanTicket.php';
   String? result;
   bool isProcessing = false;
 
   Future<void> sendToServer(String qrData) async {
     setState(() => isProcessing = true);
 
-    
+
 
     try {
       final response = await http.post(
         Uri.parse(serverUrl),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'qr_code': qrData}),
+        body: jsonEncode({'ticket_id': qrData}),
       ).timeout (const Duration(seconds: 5));
 
       if (response.statusCode == 200) {

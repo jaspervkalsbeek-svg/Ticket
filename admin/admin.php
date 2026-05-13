@@ -62,7 +62,6 @@ if (isset($_POST["action"]) && $_POST["action"] === "delete") {
     </style>
 </head>
 
-<!-- lijst van pokemons -->
 <body>
 
         <div class="box">

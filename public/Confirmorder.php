@@ -125,7 +125,7 @@ foreach ($savedTickets as $i => $t) {
     $pdf->SetFillColor(255, 214, 0);
     $pdf->SetTextColor(20, 20, 20);
     $pdf->SetFont('Helvetica', 'B', 11);
-    $pdf->Cell(0, 8, 'Ticket ' . ($i + 1) . ' – ' . $t['type'], 0, 1, 'L', true);
+    $pdf->Cell(0, 8, 'Ticket ' . ($i + 1) . ' - ' . $t['type'], 0, 1, 'L', true);
     $pdf->Ln(2);
 
     $x = $pdf->GetX();

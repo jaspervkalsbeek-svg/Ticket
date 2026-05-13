@@ -1,0 +1,18 @@
+{
+<<<<<<< HEAD
+    "require": {
+        "amirezaeb/heroqr": "^1.1"
+=======
+    "name": "jasper/ticket",
+    "authors": [
+        {
+            "name": "jasper van kalsbeek",
+            "email": "jasper.v.kalsbeek@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0",
+        "setasign/fpdf": "^1.8"
+>>>>>>> 186c37cbb2fb7fbe8ce8dfb490145890cd9914fa
+    }
+}

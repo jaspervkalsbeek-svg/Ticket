@@ -141,3 +141,35 @@ header.sticky-footer {
     top: 0;
     background-color: white;
 }
+
+/* ── Taalwisselaar ── */
+.taal-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.taal-switcher button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.taal-switcher button:hover {
+    border-color: #d32f2f;
+    color: #d32f2f;
+}
+
+.taal-switcher button.actief {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    color: white;
+    font-weight: bold;
+}

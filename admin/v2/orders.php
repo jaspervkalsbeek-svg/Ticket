@@ -6,9 +6,14 @@
     <title>Bestellingen</title>
     <link rel="stylesheet" href="add_festival_style.css">
 <style>
+    :root
+    {
+        --yellow: #FFD600;
+    }
+
     th, td { 
     padding: 6px 10px; 
-    border: 1px solid #FFD600; 
+    border: 1px solid var(--yellow); 
     border-collapse: collapse;
 
 }
@@ -20,10 +25,47 @@
         margin-top: 20px;
         border-collapse: collapse;
     }
+    .searchbtn {
+        padding: 5px;
+        background: var(--yellow);
+        border-radius: 12px;
+        font-family: 'bebas neue', sans-serif;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        color: black;
+    }
+    .searchbar {
+        width: 50%;
+}
+    .deletebtn {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .editbtn {
+        background-color: var(--yellow);
+        color: black;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .deletebtn:hover {
+        opacity: 0.9;
+    }
+    .editbtn:hover {
+        opacity: 0.9;
+    }
 </style>
 </head>
 <body>
-<?php require_once '../../includes/db.php';
+<?php 
+require_once '../../includes/db.php';
 ?>
 
 <aside class="sidebar">
@@ -80,11 +122,15 @@ if (!empty($search)) {
         echo "<p style='color:red; font-weight:bold;'> geen tickets gevonden.</p>";
  } else
  ?>
- <form method="GET">
+ <div class="searchbar"> 
+    <form method="GET" class="searchbar">
         <input type="text" name="search" placeholder="Zoeken" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-        <button type="submit">Search</button>
+        <button type="submit" class="searchbtn">Search</button>
+        <a href="orders.php">Reset</a>
     </form>
-    <a href="admin.php">Reset</a>
+    
+</div>
+
 
     <table>
     <thead>
@@ -96,6 +142,7 @@ if (!empty($search)) {
             <th>Scanned</th>
             <th>Ticket ID</th>
             <th>Datum</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -108,8 +155,18 @@ if (!empty($search)) {
             <td><?= htmlspecialchars($row['scanned'] ?? $row['scannen'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['ticket_id'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['date'] ?? '-') ?></td>
+            <td><button type="submit" class="deletebtn"
+                onclick="return confirm('Weet je zeker dat je <?= htmlspecialchars($row['email'], ENT_QUOTES) ?> wilt verwijderen?');">
+                🗑️ Verwijderen
+            </button> 
+        <a href="edit.php?id=<?= $row['id'] ?>" class="editbtn"
+                            onclick="return confirm('Weet je zeker dat je <?= htmlspecialchars($row['email'], ENT_QUOTES) ?> wilt wijzigen?');">
+                            wijzigen ✏️
+                            </a></td>
         </tr>
+            
         <?php endforeach; ?>
+
     </tbody>
 </table>
 

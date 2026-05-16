@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="button" class="add-type-btn" onclick="addType()">+ Ticket type toevoegen</button>
         </div>
  
-        <button type="submit" class="submit-btn">Festival aanmaken →</button>
+        <button type="submit" class="submit-btn"> <a href="add_festival.php">Festival aanmaken →</a></button>
     </form>
 </main>
  

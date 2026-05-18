@@ -1,4 +1,5 @@
 <?php
+    // kleine aanpassing voor nieuwe commmit...
     include "../includes/db.php";
 ?>
 

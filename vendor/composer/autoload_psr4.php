@@ -6,12 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-<<<<<<< HEAD
-    'HeroQR\\' => array($vendorDir . '/amirezaeb/heroqr/src'),
-    'Endroid\\QrCode\\' => array($vendorDir . '/endroid/qr-code/src'),
-    'DASPRiD\\Enum\\' => array($vendorDir . '/dasprid/enum/src'),
-    'BaconQrCode\\' => array($vendorDir . '/bacon/bacon-qr-code/src'),
-=======
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
->>>>>>> 186c37cbb2fb7fbe8ce8dfb490145890cd9914fa
 );

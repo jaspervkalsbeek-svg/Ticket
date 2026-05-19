@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestellingen</title>
-    <link rel="stylesheet" href="add_festival_style.css">
+    <link rel="stylesheet" href="main.css">
 <style>
+    :root
+    {
+        --yellow: #FFD600;
+    }
+
     th, td { 
     padding: 6px 10px; 
-    border: 1px solid #FFD600; 
+    border: 1px solid var(--yellow); 
     border-collapse: collapse;
 
 }
@@ -20,10 +25,47 @@
         margin-top: 20px;
         border-collapse: collapse;
     }
+    .searchbtn {
+        padding: 5px;
+        background: var(--yellow);
+        border-radius: 12px;
+        font-family: 'bebas neue', sans-serif;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        color: black;
+    }
+    .searchbar {
+        width: 50%;
+}
+    .deletebtn {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .editbtn {
+        background-color: var(--yellow);
+        color: black;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .deletebtn:hover {
+        opacity: 0.9;
+    }
+    .editbtn:hover {
+        opacity: 0.9;
+    }
 </style>
 </head>
 <body>
-<?php require_once '../../includes/db.php';
+<?php 
+require_once '../../includes/db.php';
 ?>
 
 <aside class="sidebar">
@@ -38,9 +80,10 @@
     <a href="ticket_types.php" class="nav-item"><span class="icon">🎟️</span> Ticket types</a>
     <a href="coupons.php" class="nav-item"><span class="icon">🏷️</span> Kortingscodes</a>
     <a href="orders.php" class="nav-item active"><span class="icon">📦</span> Bestellingen</a>
- 
+    <a href="success.php" class="nav-item"><span class="icon">🏆</span> Dagranglijst</a>
+  
     <div class="sidebar-footer">
-        <a href="../public/festivals.php">← Terug naar site</a>
+        <a href="../../public/festivals.php">← Terug naar site</a>
     </div>
 </aside>
 
@@ -51,16 +94,23 @@
     </div>
 
     <?php
-    $orders = $conn->query('SELECT * FROM tickets_tb')->fetchAll(PDO::FETCH_ASSOC);
+    $orders = $conn->query('
+        SELECT t.*, o.herkomst
+        FROM tickets_tb t
+        LEFT JOIN orders o ON t.order_id = o.id
+    ')->fetchAll(PDO::FETCH_ASSOC);
 
 $search = $_GET['search'] ?? '';
 if (!empty($search)) {
     $stmt = $conn->prepare("
-        SELECT * FROM  tickets_tb
-        WHERE email LIKE :search 
-        OR birthdate LIKE :search 
-        OR scannen LIKE :search 
-        OR herkomst LIKE :search 
+        SELECT t.*, o.herkomst
+        FROM tickets_tb t
+        LEFT JOIN orders o ON t.order_id = o.id
+        WHERE t.email LIKE :search 
+        OR t.birthdate LIKE :search 
+        OR t.scannen LIKE :search 
+        OR t.herkomst LIKE :search 
+        OR o.herkomst LIKE :search
     ");
 
     $searchTerm = "%" . $search . "%";
@@ -68,7 +118,7 @@ if (!empty($search)) {
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
-    $result = $conn->query("SELECT * FROM tickets_tb");
+    $result = $conn->query("SELECT t.*, o.herkomst FROM tickets_tb t LEFT JOIN orders o ON t.order_id = o.id");
 }
 
 
@@ -80,11 +130,15 @@ if (!empty($search)) {
         echo "<p style='color:red; font-weight:bold;'> geen tickets gevonden.</p>";
  } else
  ?>
- <form method="GET">
+ <div class="searchbar"> 
+    <form method="GET" class="searchbar">
         <input type="text" name="search" placeholder="Zoeken" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-        <button type="submit">Search</button>
+        <button type="submit" class="searchbtn">Search</button>
+        <a href="orders.php">Reset</a>
     </form>
-    <a href="admin.php">Reset</a>
+    
+</div>
+
 
     <table>
     <thead>
@@ -93,9 +147,11 @@ if (!empty($search)) {
             <th>Voornaam</th>
             <th>Achternaam</th>
             <th>Email</th>
+            <th>Provincie</th>
             <th>Scanned</th>
             <th>Ticket ID</th>
             <th>Datum</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -105,11 +161,22 @@ if (!empty($search)) {
             <td><?= htmlspecialchars($row['Fname'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['Lname'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['email'] ?? '-') ?></td>
+            <td><?= htmlspecialchars($row['herkomst'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['scanned'] ?? $row['scannen'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['ticket_id'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['date'] ?? '-') ?></td>
+            <td><button type="submit" class="deletebtn"
+                onclick="return confirm('Weet je zeker dat je <?= htmlspecialchars($row['email'], ENT_QUOTES) ?> wilt verwijderen?');">
+                🗑️ Verwijderen
+            </button> 
+        <a href="edit.php?id=<?= $row['id'] ?>" class="editbtn"
+                            onclick="return confirm('Weet je zeker dat je <?= htmlspecialchars($row['email'], ENT_QUOTES) ?> wilt wijzigen?');">
+                            wijzigen ✏️
+                            </a></td>
         </tr>
+            
         <?php endforeach; ?>
+
     </tbody>
 </table>
 

@@ -16,6 +16,7 @@ $fname        = trim($_POST['Fname']);
 $sname        = trim($_POST['Sname']);
 $email        = trim($_POST['Email']);
 $aanhef       = trim($_POST['Aanhef']);
+$herkomst     = trim($_POST['herkomst'] ?? '');
 $aantal       = (int)$_POST['aantal'];
 $tickets      = $_POST['tickets'] ?? [];
 
@@ -31,10 +32,10 @@ foreach ($tickets as $t) {
 
 try {
     $stmt = $conn->prepare('
-        INSERT INTO orders (Fname, Lname, email, Aanhef, geboortedatum, event_id, total_price, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+        INSERT INTO orders (Fname, Lname, email, Aanhef, event_id, total_price, created_at, herkomst)
+        VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)
     ');
-    $stmt->execute([$fname, $sname, $email, $aanhef, $geboortedatum, $event_id, $total_price]);
+    $stmt->execute([$fname, $sname, $email, $aanhef, $event_id, $total_price, $herkomst]);
     $order_id = $conn->lastInsertId();
 } catch (PDOException $e) {
     die('Order opslaan mislukt: ' . $e->getMessage());

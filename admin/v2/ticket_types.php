@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket type toevoegen – Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="add_ticket_type_style.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 <?php
@@ -42,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="ticket_types.php" class="nav-item active"><span class="icon">🎟️</span> Ticket types</a>
     <a href="coupons.php" class="nav-item"><span class="icon">🏷️</span> Kortingscodes</a>
     <a href="orders.php" class="nav-item"><span class="icon">📦</span> Bestellingen</a>
-    <div class="sidebar-footer"><a href="../public/festivals.php">← Terug naar site</a></div>
+    <a href="success.php" class="nav-item"><span class="icon">🏆</span> Dagranglijst</a>
+    <div class="sidebar-footer"><a href="../../public/festivals.php">← Terug naar site</a></div>
 </aside>
 
 <main class="main">

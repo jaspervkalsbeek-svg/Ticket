@@ -58,7 +58,7 @@ h1 {
     margin: 0 auto 40px auto;
 }
 
-header
+header,
 body {
     background-color: #f5f5f5;
     padding: 20px 0;
@@ -142,6 +142,7 @@ header.sticky-footer {
     background-color: white;
 }
 
+<<<<<<< HEAD
 /* ── Taalwisselaar ── */
 .taal-switcher {
     display: flex;
@@ -172,4 +173,25 @@ header.sticky-footer {
     border-color: #d32f2f;
     color: white;
     font-weight: bold;
+=======
+.omschrijving h2 {
+    color: white;
+    text-align: center;
+}
+
+.omschrijving p {
+    color: white;
+}
+
+.omschrijving.spikspan {
+    background-color: blue;
+}
+
+.omschrijving.spikspan h2 {
+    text-align: center;
+}
+
+.omschrijving.spikspan p {
+    color: yellow;
+>>>>>>> 2939eb1322d17ebfa796d8948fc85b170b539efb
 }

@@ -7,7 +7,6 @@ $amount = $_POST["amount"]?? '';
 $ticket_id = $_POST["ticket_id"]?? '';
 $Fname = $_POST["Fname"]?? '';
 $Lname = $_POST["Lname"]?? '';
-$date = $_POST["geboortedatum"]?? '';
 $event = $_POST["event"]?? '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

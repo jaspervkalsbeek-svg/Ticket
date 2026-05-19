@@ -81,6 +81,24 @@ $coupons = $conn->query('SELECT * FROM coupon_tb')->fetchAll(PDO::FETCH_ASSOC);
                 <input type="email" name="Email" placeholder="jan@email.com" required>
             </div>
             <div class="field">
+                <label>Uit welke provincie kom je?</label>
+                <select name="herkomst" required>
+                    <option value="">Selecteer</option>
+                    <option value="Drenthe">Drenthe</option>
+                    <option value="Flevoland">Flevoland</option>
+                    <option value="Friesland">Friesland</option>
+                    <option value="Gelderland">Gelderland</option>
+                    <option value="Groningen">Groningen</option>
+                    <option value="Limburg">Limburg</option>
+                    <option value="Noord-Brabant">Noord-Brabant</option>
+                    <option value="Noord-Holland">Noord-Holland</option>
+                    <option value="Overijssel">Overijssel</option>
+                    <option value="Utrecht">Utrecht</option>
+                    <option value="Zeeland">Zeeland</option>
+                    <option value="Zuid-Holland">Zuid-Holland</option>
+                </select>
+            </div>
+            <div class="field">
                 <label>Datum</label>
                 <div class="date-options">
     <div class="date-btn" onclick="toggleDate(this, '21')">

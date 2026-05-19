@@ -23,6 +23,12 @@
     --radius: 12px;
     --radius-sm: 8px;
     --transition: 0.2s ease;
+    --tier-s: #FFD700;
+    --tier-a: #4CAF50;
+    --tier-b: #2196F3;
+    --tier-c: #9E9E9E;
+    --tier-d: #795548;
+    --tier-f: #f44336;
 }
 
 /* ── Base ── */
@@ -484,4 +490,193 @@ select option {
     grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: start;
+}
+
+/* ── Top days row (dashboard) ── */
+.top-days-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+.top-day-card {
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 160px;
+}
+.top-day-tier {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    flex-shrink: 0;
+    color: #000;
+}
+.top-day-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+.top-day-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ── Tier list (success page) ── */
+.tier-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+.tier-row {
+    display: flex;
+    align-items: stretch;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.tier-row:hover {
+    transform: translateX(4px);
+    border-color: var(--border);
+}
+.tier-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+}
+.tier-label.s  { background: var(--tier-s); color: #000; }
+.tier-label.a  { background: var(--tier-a); color: #fff; }
+.tier-label.b  { background: var(--tier-b); color: #fff; }
+.tier-label.c  { background: var(--tier-c); color: #fff; }
+.tier-label.d  { background: var(--tier-d); color: #fff; }
+.tier-label.f  { background: var(--tier-f); color: #fff; }
+
+.tier-content {
+    flex: 1;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.tier-day {
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 140px;
+}
+.tier-day small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+.tier-stats {
+    display: flex;
+    gap: 24px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+.tier-stats span {
+    white-space: nowrap;
+}
+.tier-stats strong {
+    color: #fff;
+    font-weight: 600;
+}
+.tier-revenue {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    color: var(--yellow);
+    min-width: 100px;
+    text-align: right;
+}
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+}
+.empty-state .big {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+/* ── Tier legend (success page) ── */
+.tier-legend {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+.tier-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.tier-legend-swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+/* ── Herkomst breakdown (dashboard) ── */
+.herkomst-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+.herkomst-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.herkomst-label {
+    width: 140px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.herkomst-track {
+    flex: 1;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+.herkomst-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.4s ease;
+    min-width: 2px;
+}
+.herkomst-count {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    width: 50px;
+    text-align: right;
+    flex-shrink: 0;
 }

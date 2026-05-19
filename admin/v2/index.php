@@ -22,7 +22,8 @@
     <a href="ticket_types.php" class="nav-item"><span class="icon">🎟️</span> Ticket types</a>
     <a href="coupons.php" class="nav-item"><span class="icon">🏷️</span> Kortingscodes</a>
     <a href="orders.php" class="nav-item"><span class="icon">📦</span> Bestellingen</a>
- 
+    <a href="success.php" class="nav-item"><span class="icon">🏆</span> Dagranglijst</a>
+  
     <div class="sidebar-footer">
         <a href="../../public/festivals.php">← Terug naar site</a>
     </div>
@@ -60,6 +61,65 @@
             <div class="stat-label"> Bestellingen</div>
         </div>
     </div>
+
+    <?php
+    $topDays = $conn->query('
+        SELECT DATE(created_at) AS day, COUNT(id) AS cnt, COALESCE(SUM(total_price), 0) AS rev
+        FROM orders GROUP BY DATE(created_at) ORDER BY rev DESC LIMIT 5
+    ')->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!empty($topDays)):
+        $maxRev = max(array_column($topDays, 'rev'));
+        $minRev = min(array_column($topDays, 'rev'));
+        $range = $maxRev - $minRev;
+        function tier($pct) {
+            if ($pct >= 90) return ['S','#FFD700']; if ($pct >= 70) return ['A','#4CAF50'];
+            if ($pct >= 50) return ['B','#2196F3']; if ($pct >= 30) return ['C','#9E9E9E'];
+            if ($pct >= 10) return ['D','#795548']; return ['F','#f44336'];
+        }
+    ?>
+    <div class="section-title">🏆 Top dagen</div>
+    <div class="top-days-row">
+        <?php foreach ($topDays as $d):
+            $pct = $range > 0 ? (($d['rev'] - $minRev) / $range) * 100 : 100;
+            [$t, $c] = tier($pct);
+        ?>
+        <div class="top-day-card">
+            <span class="top-day-tier" style="background:<?= $c ?>"><?= $t ?></span>
+            <div>
+                <div class="top-day-name"><?= date('D j M', strtotime($d['day'])) ?></div>
+                <div class="top-day-meta"><?= $d['cnt'] ?> ord &middot; €<?= number_format($d['rev'], 0, ',', '.') ?></div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+    <?php
+    $herkomst = $conn->query('
+        SELECT herkomst, COUNT(*) AS cnt, COUNT(*)*100/(SELECT COUNT(*) FROM orders WHERE herkomst IS NOT NULL AND herkomst != "") AS pct
+        FROM orders WHERE herkomst IS NOT NULL AND herkomst != ""
+        GROUP BY herkomst ORDER BY cnt DESC
+    ')->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!empty($herkomst)):
+        $herkomstColors = ['#FFD600', '#4CAF50', '#2196F3', '#9E9E9E', '#FF9800', '#f44336'];
+    ?>
+    <div class="section-title">📍 Provincie bezoekers</div>
+    <div class="herkomst-list">
+        <?php foreach ($herkomst as $i => $h):
+            $color = $herkomstColors[$i % count($herkomstColors)];
+        ?>
+        <div class="herkomst-bar">
+            <div class="herkomst-label"><?= htmlspecialchars($h['herkomst']) ?></div>
+            <div class="herkomst-track">
+                <div class="herkomst-fill" style="width:<?= round($h['pct']) ?>%;background:<?= $color ?>;"></div>
+            </div>
+            <div class="herkomst-count"><?= $h['cnt'] ?></div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
 
         <div class="section-title">Nieuw festival toevoegen</div>
     <a href="add_festival.php" class="festival-card">

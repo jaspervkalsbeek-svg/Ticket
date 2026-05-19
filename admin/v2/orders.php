@@ -80,7 +80,8 @@ require_once '../../includes/db.php';
     <a href="ticket_types.php" class="nav-item"><span class="icon">🎟️</span> Ticket types</a>
     <a href="coupons.php" class="nav-item"><span class="icon">🏷️</span> Kortingscodes</a>
     <a href="orders.php" class="nav-item active"><span class="icon">📦</span> Bestellingen</a>
- 
+    <a href="success.php" class="nav-item"><span class="icon">🏆</span> Dagranglijst</a>
+  
     <div class="sidebar-footer">
         <a href="../../public/festivals.php">← Terug naar site</a>
     </div>
@@ -93,16 +94,23 @@ require_once '../../includes/db.php';
     </div>
 
     <?php
-    $orders = $conn->query('SELECT * FROM tickets_tb')->fetchAll(PDO::FETCH_ASSOC);
+    $orders = $conn->query('
+        SELECT t.*, o.herkomst
+        FROM tickets_tb t
+        LEFT JOIN orders o ON t.order_id = o.id
+    ')->fetchAll(PDO::FETCH_ASSOC);
 
 $search = $_GET['search'] ?? '';
 if (!empty($search)) {
     $stmt = $conn->prepare("
-        SELECT * FROM  tickets_tb
-        WHERE email LIKE :search 
-        OR birthdate LIKE :search 
-        OR scannen LIKE :search 
-        OR herkomst LIKE :search 
+        SELECT t.*, o.herkomst
+        FROM tickets_tb t
+        LEFT JOIN orders o ON t.order_id = o.id
+        WHERE t.email LIKE :search 
+        OR t.birthdate LIKE :search 
+        OR t.scannen LIKE :search 
+        OR t.herkomst LIKE :search 
+        OR o.herkomst LIKE :search
     ");
 
     $searchTerm = "%" . $search . "%";
@@ -110,7 +118,7 @@ if (!empty($search)) {
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
-    $result = $conn->query("SELECT * FROM tickets_tb");
+    $result = $conn->query("SELECT t.*, o.herkomst FROM tickets_tb t LEFT JOIN orders o ON t.order_id = o.id");
 }
 
 
@@ -139,6 +147,7 @@ if (!empty($search)) {
             <th>Voornaam</th>
             <th>Achternaam</th>
             <th>Email</th>
+            <th>Provincie</th>
             <th>Scanned</th>
             <th>Ticket ID</th>
             <th>Datum</th>
@@ -152,6 +161,7 @@ if (!empty($search)) {
             <td><?= htmlspecialchars($row['Fname'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['Lname'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['email'] ?? '-') ?></td>
+            <td><?= htmlspecialchars($row['herkomst'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['scanned'] ?? $row['scannen'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['ticket_id'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['date'] ?? '-') ?></td>

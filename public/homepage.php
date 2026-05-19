@@ -33,7 +33,6 @@ $t = include "../lang/{$taal}.php";
                 <a href="?lang=li">🇱🇮 LI</a>
             </div>
         </div>
-        <hr>
     </header>
 
     <!-- Kasteel sectie -->

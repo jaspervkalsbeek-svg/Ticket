@@ -140,6 +140,18 @@ header.sticky-footer {
     position: sticky;
     top: 0;
     background-color: white;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+.taal-keuze {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    gap: 4px;
+    background: #e8e8e8;
+    padding: 4px;
+    border-radius: 50px;
 }
 
 .omschrijving h2 {
@@ -161,4 +173,31 @@ header.sticky-footer {
 
 .omschrijving.spikspan p {
     color: yellow;
+}
+
+/* ── Taal keuze ── */
+.taal-keuze {
+    display: inline-flex;
+    gap: 4px;
+    margin-top: 12px;
+    background: #e8e8e8;
+    padding: 4px;
+    border-radius: 50px;
+}
+.taal-keuze a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #888;
+    transition: all 0.2s ease;
+}
+.taal-keuze a:hover {
+    color: #333;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }

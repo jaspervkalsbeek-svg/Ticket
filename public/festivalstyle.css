@@ -42,6 +42,7 @@ body::before {
 header {
     text-align: center;
     margin-bottom: 56px;
+    position: relative;
 }
 
 header img {
@@ -154,4 +155,32 @@ header p {
 
 .back:hover {
     color: var(--yellow);
+}
+
+/* ── Taal keuze ── */
+.taal-keuze {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    display: inline-flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 4px;
+    border-radius: 50px;
+}
+.taal-keuze a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+.taal-keuze a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
 }

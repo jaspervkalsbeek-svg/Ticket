@@ -4,81 +4,33 @@
 
 namespace Composer\Autoload;
 
-<<<<<<< HEAD
-class ComposerStaticInit8e0af3a3d2d5b3a0ae34dc18655bdb4d
-{
-    public static $prefixLengthsPsr4 = array (
-        'H' =>
-        array (
-            'HeroQR\\' => 7,
-        ),
-        'E' =>
-        array (
-            'Endroid\\QrCode\\' => 15,
-        ),
-        'D' =>
-        array (
-            'DASPRiD\\Enum\\' => 13,
-        ),
-        'B' =>
-        array (
-            'BaconQrCode\\' => 12,
-=======
 class ComposerStaticInitb2d53cfe28d0d7c2f64f45cd1f8537f8
 {
     public static $prefixLengthsPsr4 = array (
         'P' =>
         array (
             'PHPMailer\\PHPMailer\\' => 20,
->>>>>>> 186c37cbb2fb7fbe8ce8dfb490145890cd9914fa
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-<<<<<<< HEAD
-        'HeroQR\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/amirezaeb/heroqr/src',
-        ),
-        'Endroid\\QrCode\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/endroid/qr-code/src',
-        ),
-        'DASPRiD\\Enum\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/dasprid/enum/src',
-        ),
-        'BaconQrCode\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
-=======
         'PHPMailer\\PHPMailer\\' =>
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
->>>>>>> 186c37cbb2fb7fbe8ce8dfb490145890cd9914fa
         ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-<<<<<<< HEAD
-=======
         'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
->>>>>>> 186c37cbb2fb7fbe8ce8dfb490145890cd9914fa
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-<<<<<<< HEAD
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8e0af3a3d2d5b3a0ae34dc18655bdb4d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8e0af3a3d2d5b3a0ae34dc18655bdb4d::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit8e0af3a3d2d5b3a0ae34dc18655bdb4d::$classMap;
-=======
             $loader->prefixLengthsPsr4 = ComposerStaticInitb2d53cfe28d0d7c2f64f45cd1f8537f8::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb2d53cfe28d0d7c2f64f45cd1f8537f8::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitb2d53cfe28d0d7c2f64f45cd1f8537f8::$classMap;
->>>>>>> 186c37cbb2fb7fbe8ce8dfb490145890cd9914fa
 
         }, null, ClassLoader::class);
     }

@@ -24,5 +24,6 @@ return [
 
                                 "festivals_titel"    => "Kies je festival",
     "festivals_subtitel" => "Selecteer een festival om tickets te bestellen",
+    "terug"               => "Terug naar overzicht"
 ];
 ?>

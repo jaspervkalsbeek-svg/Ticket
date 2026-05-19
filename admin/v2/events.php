@@ -14,7 +14,7 @@ $success = ''; $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name     = trim($_POST['name']);
-    $desc     = trim($_POST['discription']);
+    $desc     = trim($_POST['description']);
     $start    = $_POST['start_date'];
     $end      = $_POST['end_date'];
     $location = trim($_POST['location']);
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Vul alle verplichte velden in.';
     } else {
         try {
-            $stmt = $conn->prepare('INSERT INTO events (name, discription, start_date, end_date, location) VALUES (?, ?, ?, ?, ?)');
+            $stmt = $conn->prepare('INSERT INTO events (name, description, start_date, end_date, location) VALUES (?, ?, ?, ?, ?)');
             $stmt->execute([$name, $desc, $start, $end ?: null, $location]);
             $success = 'Evenement <strong>' . htmlspecialchars($name) . '</strong> succesvol toegevoegd!';
         } catch (PDOException $e) {
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="field">
                 <label>Omschrijving</label>
-                <textarea name="discription" placeholder="Beschrijving van het evenement..."><?= htmlspecialchars($_POST['discription'] ?? '') ?></textarea>
+                <textarea name="description" placeholder="Beschrijving van het evenement..."><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
             </div>
             <div class="row">
                 <div class="field">

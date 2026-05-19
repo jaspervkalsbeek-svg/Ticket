@@ -92,7 +92,7 @@ if (!$product) {
 
     <button type="submit">Opslaan</button>
     &nbsp; &nbsp;
-    <a href="admin.php">Annuleren / Terug</a>
+    <a href="orders.php">Annuleren / Terug</a>
 </form>
 
 </body>

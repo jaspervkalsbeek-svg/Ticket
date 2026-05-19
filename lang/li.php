@@ -21,5 +21,8 @@ return [
                             van 't Limburgs Vastelaoves Leedjeskonkoer. Haor optredings zeine vol energie, mit tiedjes die bekènd zeine van
                             Noörd tot Zúd in de provinsje. Ein optreden van Spik en Span steit garant veur entertainment, same zinge en same beleve.
                             'Gewoon jonges', mit prachtig repertoire en vlammende optredings. In 2020 wón het duo wederóm 't LVK mit 't tiedje 'Vrunj tot de allerbeste runj'.",
-];
+
+    "festivals_titel"    => "Kies dien festival",
+    "festivals_subtitel" => "Keus ein festival om kaartjes te bestel",
+                            ];
 ?>

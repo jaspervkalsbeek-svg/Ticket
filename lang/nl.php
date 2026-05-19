@@ -21,5 +21,8 @@ return [
                             van het Limburgs Vastelaoves Leedjes Konkoer. Hun optredens zijn vol energie, met nummers die bekend zijn van 
                             Noord tot Zuid in de provincie. Een optreden van Spik en Span staat garant voor entertainment, samen zingen en samen beleven. 
                             'Gewuen jonges', met prachtig repertoire en vlammende optredens. In 2020 won het duo wederom het LVK met het nummer 'Vrunj tot de allerbeste runj'.",
+
+                                "festivals_titel"    => "Kies je festival",
+    "festivals_subtitel" => "Selecteer een festival om tickets te bestellen",
 ];
 ?>

@@ -24,7 +24,7 @@
     <a href="orders.php" class="nav-item"><span class="icon">📦</span> Bestellingen</a>
  
     <div class="sidebar-footer">
-        <a href="../public/festivals.php">← Terug naar site</a>
+        <a href="../../public/festivals.php">← Terug naar site</a>
     </div>
 </aside>
 

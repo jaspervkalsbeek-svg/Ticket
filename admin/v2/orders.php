@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestellingen</title>
-    <link rel="stylesheet" href="add_festival_style.css">
+    <link rel="stylesheet" href="main.css">
 <style>
     :root
     {
@@ -82,7 +82,7 @@ require_once '../../includes/db.php';
     <a href="orders.php" class="nav-item active"><span class="icon">📦</span> Bestellingen</a>
  
     <div class="sidebar-footer">
-        <a href="../public/festivals.php">← Terug naar site</a>
+        <a href="../../public/festivals.php">← Terug naar site</a>
     </div>
 </aside>
 

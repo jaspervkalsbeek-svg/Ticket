@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evenement toevoegen – Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="add_event_style.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 <?php
@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $start    = $_POST['start_date'];
     $end      = $_POST['end_date'];
     $location = trim($_POST['location']);
+    $nameli = trim($_POST['name_li']);
+    $descriptionli = trim($_POST['description_li']);
 
     if (!$name || !$start || !$location) {
         $error = 'Vul alle verplichte velden in.';
@@ -40,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="ticket_types.php" class="nav-item"><span class="icon">🎟️</span> Ticket types</a>
     <a href="coupons.php" class="nav-item"><span class="icon">🏷️</span> Kortingscodes</a>
     <a href="orders.php" class="nav-item"><span class="icon">📦</span> Bestellingen</a>
-    <div class="sidebar-footer"><a href="../public/festivals.php">← Terug naar site</a></div>
+    <div class="sidebar-footer"><a href="../../public/festivals.php">← Terug naar site</a></div>
 </aside>
 
 <main class="main">
@@ -61,8 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="name" placeholder="Spik & Span XXL 2027" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
             </div>
             <div class="field">
+                <label>Naam limburgs</label>
+                <input type="text" name="name_li" placeholder="vertaling" value="<?= htmlspecialchars($_POST['name_li'] ?? '') ?>">
+            </div>
+            <div class="field">
                 <label>Omschrijving</label>
                 <textarea name="description" placeholder="Beschrijving van het evenement..."><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
+            </div>
+            <div class="field">
+                <label>Omschrijving limburgs</label>
+                <textarea name="description_li" placeholder="vertaling"><?= htmlspecialchars($_POST['description_li'] ?? '') ?></textarea>
             </div>
             <div class="row">
                 <div class="field">

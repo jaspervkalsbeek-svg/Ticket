@@ -1,3 +1,7 @@
+/* ================================================
+   main.css – gedeelde stijlen voor alle pagina's
+   ================================================ */
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -89,12 +93,7 @@ body {
     border: 1px solid transparent;
 }
 
-.nav-item:hover {
-    background: var(--yellow-dim);
-    color: var(--yellow);
-    border-color: var(--border);
-}
-
+.nav-item:hover,
 .nav-item.active {
     background: var(--yellow-dim);
     color: var(--yellow);
@@ -135,7 +134,6 @@ body {
 .main {
     margin-left: 240px;
     padding: 48px 52px;
-    max-width: 960px;
     min-height: 100vh;
 }
 
@@ -275,14 +273,6 @@ select option {
     min-width: 160px;
 }
 
-/* ── Helper text ── */
-.hint {
-    font-size: 0.76rem;
-    color: var(--text-muted);
-    margin-top: 6px;
-    line-height: 1.4;
-}
-
 /* ── Submit button ── */
 .submit-btn {
     width: 100%;
@@ -322,21 +312,10 @@ select option {
     line-height: 1.5;
 }
 
-.alert::before {
-    font-size: 1rem;
-    flex-shrink: 0;
-    margin-top: 1px;
-}
-
 .alert.success {
     background: rgba(76, 175, 80, 0.1);
     border: 1px solid rgba(76, 175, 80, 0.25);
     color: #a5d6a7;
-}
-
-.alert.success::before {
-    content: '✓';
-    color: #81c784;
 }
 
 .alert.error {
@@ -345,7 +324,164 @@ select option {
     color: #ef9a9a;
 }
 
-.alert.error::before {
-    content: '!';
-    color: #e57373;
+/* ── Stats grid (dashboard) ── */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--yellow);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ── Cards grid (dashboard) ── */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition);
+    display: block;
+}
+
+.card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.card-icon { font-size: 1.8rem; margin-bottom: 14px; }
+.card-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
+.card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+.card-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: var(--yellow);
+    font-weight: 500;
+}
+
+/* ── Festival card (dashboard) ── */
+.festival-card {
+    background: linear-gradient(135deg, rgba(255, 214, 0, 0.08), rgba(255, 214, 0, 0.03));
+    border: 1px solid rgba(255, 214, 0, 0.3);
+    border-radius: 16px;
+    padding: 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.festival-card:hover {
+    border-color: var(--yellow);
+    box-shadow: 0 8px 32px rgba(255, 214, 0, 0.1);
+}
+
+.festival-card-icon { font-size: 3rem; flex-shrink: 0; }
+.festival-card-content h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: var(--yellow);
+    margin-bottom: 6px;
+}
+.festival-card-content p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 500px;
+}
+.festival-card-arrow { margin-left: auto; font-size: 1.5rem; color: var(--yellow); flex-shrink: 0; }
+
+/* ── Ticket type rows (admin) ── */
+.ticket-type-row {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.ticket-type-row .remove-btn {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color var(--transition);
+}
+
+.ticket-type-row .remove-btn:hover { color: #f44336; }
+
+.add-type-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 214, 0, 0.06);
+    border: 1px dashed rgba(255, 214, 0, 0.3);
+    border-radius: 10px;
+    color: var(--yellow);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    margin-top: 4px;
+}
+
+.add-type-btn:hover {
+    background: rgba(255, 214, 0, 0.1);
+    border-color: var(--yellow);
+}
+
+/* ── Hint text ── */
+.hint {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* ── Form grid (2 kolommen) ── */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
 }

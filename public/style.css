@@ -154,6 +154,38 @@ header.sticky-footer {
     border-radius: 50px;
 }
 
+<<<<<<< HEAD
+/* ── Taalwisselaar ── */
+.taal-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.taal-switcher button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.taal-switcher button:hover {
+    border-color: #d32f2f;
+    color: #d32f2f;
+}
+
+.taal-switcher button.actief {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    color: white;
+    font-weight: bold;
+=======
 .omschrijving h2 {
     color: white;
     text-align: center;
@@ -173,6 +205,7 @@ header.sticky-footer {
 
 .omschrijving.spikspan p {
     color: yellow;
+<<<<<<< HEAD
 }
 
 /* ── Taal keuze ── */
@@ -200,4 +233,7 @@ header.sticky-footer {
     color: #333;
     background: #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+=======
+>>>>>>> 2939eb1322d17ebfa796d8948fc85b170b539efb
+>>>>>>> c6e8768b0aa075f8459aaafc9903959d33066ac1
 }

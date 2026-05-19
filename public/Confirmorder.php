@@ -2,13 +2,6 @@
 require_once '../includes/db.php';
 require_once '../vendor/autoload.php';
 
-$email = $_POST["email"]?? '';
-$aanhef = $_POST["aanhef"]?? '';
-$amount = $_POST["amount"]?? '';
-$ticket_id = $_POST["ticket_id"]?? '';
-$Fname = $_POST["Fname"]?? '';
-$Lname = $_POST["Lname"]?? '';
-$event = $_POST["event"]?? '';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -80,7 +73,6 @@ foreach ($tickets as $t) {
         'qr_url'      => $qrUrl,
     ];
 }
-?>
 
 
 $evStmt = $conn->prepare('SELECT * FROM events WHERE id = ? LIMIT 1');

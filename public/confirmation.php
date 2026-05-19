@@ -109,7 +109,7 @@ $tickets = $ticketStmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <a href="homepage.php" class="home-btn">Terug naar home →</a>
+    <a href="index.php" class="home-btn">Terug naar home →</a>
 
 </div>
 </body>

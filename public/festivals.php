@@ -57,7 +57,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endif; ?>
 
-    <a class="back" href="homepage.php?lang=<?= $taal ?>"><?= $t['terug'] ?></a>
+    <a class="back" href="index.php?lang=<?= $taal ?>"><?= $t['terug'] ?></a>
 </div>
 </body>
 </html>

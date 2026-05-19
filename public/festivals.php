@@ -39,7 +39,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php endif; ?>
                     </div>
                     <div class="card-name"><?= htmlspecialchars($e['name']) ?></div>
-                    <div class="card-desc"><?= htmlspecialchars($e['discription']) ?></div>
+                    <div class="card-desc"><?= htmlspecialchars($e['description']) ?></div>
                     <div class="card-location">📍 <?= htmlspecialchars($e['location']) ?></div>
                     <?php if ($minPrice): ?>
                         <span class="card-price">v.a. €<?= number_format($minPrice, 2, ',', '.') ?></span>

@@ -24,15 +24,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Vul alle vereiste velden in.";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 ?>

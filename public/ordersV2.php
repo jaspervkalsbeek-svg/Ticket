@@ -16,7 +16,7 @@ $ttStmt->execute([$event_id]);
 $ticketTypes = $ttStmt->fetchAll(PDO::FETCH_ASSOC);
  
 $coupons = $conn->query('SELECT * FROM coupon_tb')->fetchAll(PDO::FETCH_ASSOC);
-?>
+?>j
 
 <!DOCTYPE html>
 <html lang="nl">

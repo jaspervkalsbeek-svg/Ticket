@@ -1,0 +1,5 @@
+C:\xampp\htdocs\Ticket\obj\Debug\net10.0\Ticket.GeneratedMSBuildEditorConfig.editorconfig
+C:\xampp\htdocs\Ticket\obj\Debug\net10.0\Ticket.AssemblyInfoInputs.cache
+C:\xampp\htdocs\Ticket\obj\Debug\net10.0\Ticket.AssemblyInfo.cs
+C:\xampp\htdocs\Ticket\obj\Debug\net10.0\Ticket.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\Ticket\obj\Debug\net10.0\Ticket.sourcelink.json

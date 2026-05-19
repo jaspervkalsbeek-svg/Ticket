@@ -31,10 +31,10 @@ foreach ($tickets as $t) {
 
 try {
     $stmt = $conn->prepare('
-        INSERT INTO orders (Fname, Lname, email, Aanhef, geboortedatum, event_id, total_price, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+        INSERT INTO orders (Fname, Lname, email, Aanhef, event_id, total_price, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, NOW())
     ');
-    $stmt->execute([$fname, $sname, $email, $aanhef, $geboortedatum, $event_id, $total_price]);
+    $stmt->execute([$fname, $sname, $email, $aanhef, $event_id, $total_price]);
     $order_id = $conn->lastInsertId();
 } catch (PDOException $e) {
     die('Order opslaan mislukt: ' . $e->getMessage());

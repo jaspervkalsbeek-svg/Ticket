@@ -66,6 +66,18 @@
 <body>
 <?php 
 require_once '../../includes/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
+    $id = $_POST['id'] ?? null;
+    if ($id) {
+        $stmt = $conn->prepare("DELETE FROM tickets_tb WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            header("Location: orders.php");
+            exit;
+        }
+    }
+}
 ?>
 
 <aside class="sidebar">
@@ -165,10 +177,15 @@ if (!empty($search)) {
             <td><?= htmlspecialchars($row['scanned'] ?? $row['scannen'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['ticket_id'] ?? '-') ?></td>
             <td><?= htmlspecialchars($row['date'] ?? '-') ?></td>
-            <td><button type="submit" class="deletebtn"
-                onclick="return confirm('Weet je zeker dat je <?= htmlspecialchars($row['email'], ENT_QUOTES) ?> wilt verwijderen?');">
-                🗑️ Verwijderen
-            </button> 
+            <td>
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                    <button type="submit" class="deletebtn"
+                        onclick="return confirm('Weet je zeker dat je <?= htmlspecialchars($row['email'], ENT_QUOTES) ?> wilt verwijderen?');">
+                        🗑️ Verwijderen
+                    </button>
+                </form>
         <a href="edit.php?id=<?= $row['id'] ?>" class="editbtn"
                             onclick="return confirm('Weet je zeker dat je <?= htmlspecialchars($row['email'], ENT_QUOTES) ?> wilt wijzigen?');">
                             wijzigen ✏️

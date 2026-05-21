@@ -28,7 +28,7 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-  static const String serverUrl = 'http://10.188.240.165/ticket/ticket/ScanTicket.php';
+  static const String serverUrl = 'http://10.121.94.165/ticket/ticket/ScanTicket.php';
   String? result;
   bool isProcessing = false;
 
@@ -45,17 +45,17 @@ class _ScannerScreenState extends State<ScannerScreen> {
       ).timeout (const Duration(seconds: 5));
 
       if (response.statusCode == 200) {
-  final data = jsonDecode(response.body);
-  final bool success = data['success'] ?? false;
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(data['message'] ?? 'Done'),
-      backgroundColor: success ? Colors.green : Colors.orange,
-    ),
-  );
-}
-
-       else {
+        final data = jsonDecode(response.body);
+        final bool success = data['success'] ?? false;
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(data['message'] ?? 'Done'),
+            backgroundColor: success ? Colors.green : Colors.orange,
+          ),
+        );
+      } else {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Server error'), backgroundColor: Colors.red),
         );
@@ -68,6 +68,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         errorMsg = 'Cannot connect to server';
       }
       
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMsg), backgroundColor: Colors.red),
       );

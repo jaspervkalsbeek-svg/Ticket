@@ -170,18 +170,19 @@ foreach ($savedTickets as $i => $t) {
 
 $pdfOutput = $pdf->Output('S');
 
+$smtp = require '../includes/smtp_config.php';
 $mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';
+    $mail->Host       = $smtp['smtp_host'];
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'jasper.v.kalsbeek@gmail.com'; // ← change this
-    $mail->Password   = 'xdsq mhma llds iioq';
+    $mail->Username   = $smtp['smtp_username'];
+    $mail->Password   = $smtp['smtp_password'];
     $mail->SMTPSecure = 'tls';
-    $mail->Port       = 587;
+    $mail->Port       = $smtp['smtp_port'];
 
-    $mail->setFrom('jasper.v.kalsbeek@gmail.com', 'Spik & Span Festival'); // ← change this
+    $mail->setFrom($smtp['smtp_username'], 'Spik & Span Festival');
     $mail->addAddress($email, $fname . ' ' . $sname);
 
     $mail->isHTML(true);

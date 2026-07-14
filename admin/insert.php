@@ -13,7 +13,7 @@ $type1 = $types[0] ?? NULL;
 $type2 = $types[1] ?? NULL;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (!empty($email) && !empty($birthdate) && !empty($scannen) && !empty($herkomst) && !empty($groepscode)) {
+    if (!empty($email) && !empty($birthdate) && !empty($herkomst)) {
         try {
             $stmt = $conn->prepare("INSERT INTO tickets_tb (email, birthdate, scannen, herkomst, groepscode) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$email, $birthdate, $scannen, $herkomst, $groepscode]);

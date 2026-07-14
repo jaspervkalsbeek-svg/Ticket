@@ -13,5 +13,8 @@ vendor/
 Thumbs.db
 .DS_Store
 
+# Config met gevoelige gegevens
+includes/smtp_config.php
+
 # Composer lock (optioneel, hangt van project af)
 # composer.lock

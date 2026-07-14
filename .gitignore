@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+
+# Vendor (PHP)
+vendor/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Composer lock (optioneel, hangt van project af)
+# composer.lock

@@ -1,16 +1,16 @@
  <?php
-ini_set ('display_errors',1);
-ini_set ('display_startup_errors',1);
-error_reporting (E_ALL);
-
 session_start();
 
 include ("../includes/db.php");
 
+if (empty($_SESSION['email'])) {
+    header("Location: ../inlog_page/login.php");
+    exit;
+}
 
 //  DELETE
 if (isset($_POST["action"]) && $_POST["action"] === "delete") {
-    $id = $_POST["dex_number"] ?? null;
+    $id = $_POST["id"] ?? null;
 
    $stmt = $conn->prepare("DELETE FROM tickets_tb WHERE id = :id");
    $stmt->bindParam(":id", $id);
@@ -18,7 +18,7 @@ if (isset($_POST["action"]) && $_POST["action"] === "delete") {
    if ($stmt->execute()) {
        header ("Location: admin.php");
        exit;
-    } else { $error = "verwijderen mislukt:". implode(", ", $conn->errorInfo()); 
+    } else { $error = "Verwijderen mislukt.";
     } 
 }
 ?>

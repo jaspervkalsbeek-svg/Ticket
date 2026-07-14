@@ -1,5 +1,6 @@
 <?php
-$taal = $_GET['lang'] ?? 'nl';
+$allowed_lang = ['nl', 'li'];
+$taal = in_array($_GET['lang'] ?? '', $allowed_lang) ? $_GET['lang'] : 'nl';
 $t = include "../lang/{$taal}.php";
 ?>
 

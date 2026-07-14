@@ -21,14 +21,25 @@ $aantal       = (int)$_POST['aantal'];
 $tickets      = $_POST['tickets'] ?? [];
 
 if (empty($tickets) || $aantal < 1) {
-    header('Location: order.php?event_id=' . $event_id);
+    header('Location: ordersV2.php?event_id=' . $event_id);
     exit;
 }
 
-$total_price = 0;
-foreach ($tickets as $t) {
-    $total_price += (float)$t['price'];
+// Validate prices server-side — never trust client-submitted prices
+$ttStmt = $conn->prepare('SELECT id, price FROM ticket_type_tb WHERE event_id = ? AND deleted_at IS NULL');
+$ttStmt->execute([$event_id]);
+$validTypes = [];
+while ($row = $ttStmt->fetch(PDO::FETCH_ASSOC)) {
+    $validTypes[$row['id']] = (float)$row['price'];
 }
+
+$total_price = 0;
+foreach ($tickets as &$t) {
+    $type_id = (int)$t['type_id'];
+    $t['price'] = $validTypes[$type_id] ?? 0;
+    $total_price += $t['price'];
+}
+unset($t);
 
 try {
     $stmt = $conn->prepare('

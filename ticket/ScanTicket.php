@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $body = json_decode(file_get_contents('php://input'), true);
  
-if (!isset($body['ticket_id']) || !isset($body['ticket_id'])) {
+if (!isset($body['ticket_id'])) {
     respond(false, 'Missing QR-code.', 400);
 }
  

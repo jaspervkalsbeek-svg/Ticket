@@ -1,11 +1,12 @@
 <?php
 require_once '../includes/db.php';
 
-$taal = $_GET['lang'] ?? 'nl';
+$allowed_lang = ['nl', 'li'];
+$taal = in_array($_GET['lang'] ?? '', $allowed_lang) ? $_GET['lang'] : 'nl';
 $t = include "../lang/{$taal}.php";
 $name_col = $taal === 'nl' ? 'name' : "name_{$taal}";
 $desc_col  = $taal === 'nl' ? 'description' : "description_{$taal}";
-$stmt = $conn->query("SELECT id, {$name_col} as name, {$desc_col} as description, start_date, end_date, location FROM events ORDER BY start_date ASC");
+$stmt = $conn->query("SELECT e.id, e.{$name_col} as name, e.{$desc_col} as description, e.start_date, e.end_date, e.location, (SELECT MIN(price) FROM ticket_type_tb WHERE event_id = e.id AND deleted_at IS NULL) as min_price FROM events e ORDER BY e.start_date ASC");
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -34,11 +35,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="empty"><?= $t['geen_festivals'] ?></div>
     <?php else: ?>
         <div class="grid">
-            <?php foreach ($events as $e):
-                $priceStmt = $conn->prepare('SELECT MIN(price) as min_price FROM ticket_type_tb WHERE event_id = ? AND deleted_at IS NULL');
-                $priceStmt->execute([$e['id']]);
-                $minPrice = $priceStmt->fetchColumn();
-            ?>
+            <?php foreach ($events as $e): ?>
                 <a class="card" href="ordersV2.php?event_id=<?= $e['id'] ?>&lang=<?= $taal ?>">
                     <div class="card-date">
                         <?= date('d M Y', strtotime($e['start_date'])) ?>
@@ -49,8 +46,8 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="card-name"><?= htmlspecialchars($e['name']) ?></div>
                     <div class="card-desc"><?= htmlspecialchars($e['description']) ?></div>
                     <div class="card-location">📍 <?= htmlspecialchars($e['location']) ?></div>
-                    <?php if ($minPrice): ?>
-                        <span class="card-price">v.a. €<?= number_format($minPrice, 2, ',', '.') ?></span>
+                    <?php if ($e['min_price']): ?>
+                        <span class="card-price">v.a. €<?= number_format($e['min_price'], 2, ',', '.') ?></span>
                     <?php endif; ?>
                 </a>
             <?php endforeach; ?>

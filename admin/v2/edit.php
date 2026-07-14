@@ -2,39 +2,40 @@
 
 session_start();
 
-ini_set("display_errors",1);
-ini_set("display_startup_errors",1);
-error_reporting(E_ALL);
 include ("../../includes/db.php");
-$id = (int)($_GET['id'] ?? 0);
 
-if ($id <= 0) {
-    echo "ongeldige ticket opgegeven.";
+if (empty($_SESSION['email'])) {
+    header("Location: ../../inlog_page/login.php");
     exit;
 }
 
+$id = (int)($_GET['id'] ?? 0);
+
+if ($id <= 0) {
+    echo "Ongeldige ticket opgegeven.";
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = trim($_POST['id'] ?? '');
+    $id = (int)($_POST['id'] ?? 0);
     $email   = trim($_POST['email']   ?? '');
     $ticket_id = trim($_POST['ticket_id'] ?? '');
     $fname = trim($_POST['fname'] ?? '');
-    $Lname = trim($_POST['lname'] ?? '');
-    $scanned = trim($_POST['scanned'] ?? '');
+    $lname = trim($_POST['lname'] ?? '');
+    $scanned = (int)($_POST['scanned'] ?? 0);
 
-    if ($email && $ticket_id && $fname && $Lname && $scanned) {
+    if ($email && $ticket_id && $fname && $lname) {
         $stmt = $conn->prepare("UPDATE tickets_tb SET email = ?, ticket_id = ?, fname = ?, lname = ?, scanned = ? WHERE id = ?");    
-        $stmt->execute([$email, $ticket_id, $fname, $Lname, $scanned, $id]);
-
-        if ($stmt->execute()) {
-            header("Location: admin.php?msg=Product+bijgewerkt");
+        if ($stmt->execute([$email, $ticket_id, $fname, $lname, $scanned, $id])) {
+            header("Location: orders.php");
             exit;
         } else {
-            $error = "Update mislukt: " . implode(", ", $stmt->errorInfo());
+            $error = "Update mislukt.";
         }
-}} else {
+    } else {
         $error = "Vul alle velden correct in.";
     }
+}
 
 
 // load current data

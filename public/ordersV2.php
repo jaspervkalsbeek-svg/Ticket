@@ -16,7 +16,7 @@ $ttStmt->execute([$event_id]);
 $ticketTypes = $ttStmt->fetchAll(PDO::FETCH_ASSOC);
  
 $coupons = $conn->query('SELECT * FROM coupon_tb')->fetchAll(PDO::FETCH_ASSOC);
-?>j
+?>
 
 <!DOCTYPE html>
 <html lang="nl">
@@ -52,7 +52,7 @@ $coupons = $conn->query('SELECT * FROM coupon_tb')->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php else: ?>
  
-    <form action="ConfirmOrder.php" method="POST" id="orderForm">
+    <form action="confirmorder.php" method="POST" id="orderForm">
         <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
  
         <div class="section">
@@ -101,14 +101,21 @@ $coupons = $conn->query('SELECT * FROM coupon_tb')->fetchAll(PDO::FETCH_ASSOC);
             <div class="field">
                 <label>Datum</label>
                 <div class="date-options">
-    <div class="date-btn" onclick="toggleDate(this, '21')">
-        21 augustus
-        <input type="checkbox" name="Date[]" value="21" style="display:none;">
+    <?php
+    $start = new DateTime($event['start_date']);
+    $end = $event['end_date'] ? new DateTime($event['end_date']) : $start;
+    $interval = $start->diff($end);
+    for ($i = 0; $i <= $interval->days; $i++):
+        $date = clone $start;
+        $date->modify("+{$i} days");
+        $day = $date->format('d');
+        $label = $date->format('d MMMM');
+    ?>
+    <div class="date-btn" onclick="toggleDate(this, '<?= $day ?>')">
+        <?= $label ?>
+        <input type="checkbox" name="Date[]" value="<?= $day ?>" style="display:none;">
     </div>
-    <div class="date-btn" onclick="toggleDate(this, '22')">
-        22 augustus
-        <input type="checkbox" name="Date[]" value="22" style="display:none;">
-    </div>
+    <?php endfor; ?>
 </div>
                 <div class="field">
             <label>Kortingscode (optioneel)</label>

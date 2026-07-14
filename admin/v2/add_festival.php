@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nieuw festival – Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css ">
+    <link rel="stylesheet" href="main.css">
+</head>
 <body>
 <?php
+require_once 'auth.php';
 require_once '../../includes/db.php';
  
 $success = '';
@@ -53,18 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
  
-<!-- Sidebar -->
-<aside class="sidebar">
-    <div class="sidebar-logo">Admin Panel<span>Spik &amp; Span</span></div>
-    <div class="nav-label">Beheer</div>
-    <a href="index.php" class="nav-item"><span class="icon">🏠</span> Dashboard</a>
-    <a href="events.php" class="nav-item"><span class="icon">🎪</span> Evenementen</a>
-    <a href="ticket_types.php" class="nav-item"><span class="icon">🎟️</span> Ticket types</a>
-    <a href="coupons.php" class="nav-item"><span class="icon">🏷️</span> Kortingscodes</a>
-    <a href="orders.php" class="nav-item"><span class="icon">📦</span> Bestellingen</a>
-    <a href="success.php" class="nav-item"><span class="icon">🏆</span> Dagranglijst</a>
-    <div class="sidebar-footer"><a href="../../public/festivals.php">← Terug naar site</a></div>
-</aside>
+<?php $currentPage = ''; include 'sidebar.php'; ?>
  
 <main class="main">
     <a href="index.php" class="back">← Terug naar dashboard</a>
@@ -150,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="button" class="add-type-btn" onclick="addType()">+ Ticket type toevoegen</button>
         </div>
  
-        <button type="submit" class="submit-btn"> <a href="add_festival.php">Festival aanmaken →</a></button>
+        <button type="submit" class="submit-btn">Festival aanmaken →</button>
     </form>
 </main>
  

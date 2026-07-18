@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Vul alle verplichte velden in.';
     } else {
         try {
-            $stmt = $conn->prepare('INSERT INTO events (name, description, start_date, end_date, location) VALUES (?, ?, ?, ?, ?)');
-            $stmt->execute([$name, $desc, $start, $end ?: null, $location]);
+            $stmt = $conn->prepare('INSERT INTO events (name, description, start_date, end_date, location, name_li, description_li) VALUES (?, ?, ?, ?, ?, ?, ?)');
+            $stmt->execute([$name, $desc, $start, $end ?: null, $location, $nameli, $descriptionli]);
             $success = 'Evenement <strong>' . htmlspecialchars($name) . '</strong> succesvol toegevoegd!';
         } catch (PDOException $e) {
             $error = 'Fout bij opslaan: ' . $e->getMessage();

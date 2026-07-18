@@ -90,37 +90,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     </div>
 
     <?php
-    $orders = $conn->query('
-        SELECT t.*, o.herkomst
-        FROM tickets_tb t
-        LEFT JOIN orders o ON t.order_id = o.id
-    ')->fetchAll(PDO::FETCH_ASSOC);
-
-$search = $_GET['search'] ?? '';
-if (!empty($search)) {
-    $stmt = $conn->prepare("
-        SELECT t.*, o.herkomst
-        FROM tickets_tb t
-        LEFT JOIN orders o ON t.order_id = o.id
-        WHERE t.email LIKE :search 
-        OR t.birthdate LIKE :search 
-        OR t.scannen LIKE :search 
-        OR t.herkomst LIKE :search 
-        OR o.herkomst LIKE :search
-    ");
-
-    $searchTerm = "%" . $search . "%";
-    $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} else {
-    $result = $conn->query("SELECT t.*, o.herkomst FROM tickets_tb t LEFT JOIN orders o ON t.order_id = o.id");
-}
-
-
- if (!$result) {
-    echo "<p style='color:red; font-weight:bold;'> dataquery mislukt: ";
- } $data = $result->fetchAll(PDO::FETCH_ASSOC);
+    $search = $_GET['search'] ?? '';
+    if (!empty($search)) {
+        $stmt = $conn->prepare("
+            SELECT t.*, o.herkomst
+            FROM tickets_tb t
+            LEFT JOIN orders o ON t.order_id = o.id
+            WHERE t.email LIKE :search
+            OR t.Fname LIKE :search
+            OR t.Lname LIKE :search
+            OR t.ticket_id LIKE :search
+            OR o.herkomst LIKE :search
+        ");
+        $searchTerm = "%" . $search . "%";
+        $stmt->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        $data = $conn->query("
+            SELECT t.*, o.herkomst
+            FROM tickets_tb t
+            LEFT JOIN orders o ON t.order_id = o.id
+        ")->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     if (!$data) {
         echo "<p style='color:red; font-weight:bold;'> geen tickets gevonden.</p>";

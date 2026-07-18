@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             // Insert event
-            $stmt = $conn->prepare('INSERT INTO events (name, description, start_date, end_date, location) VALUES (?, ?, ?, ?, ?)');
-            $stmt->execute([$name, $desc, $start, $end ?: null, $location]);
+            $stmt = $conn->prepare('INSERT INTO events (name, description, start_date, end_date, location, name_li, description_li) VALUES (?, ?, ?, ?, ?, ?, ?)');
+            $stmt->execute([$name, $desc, $start, $end ?: null, $location, $nameli, $descriptionli]);
             $event_id = $conn->lastInsertId();
  
             // Insert ticket types
